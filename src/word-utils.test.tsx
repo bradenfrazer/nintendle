@@ -46,4 +46,25 @@ describe('computeGuess', () => {
       LetterState.Miss
     ])
   })
+  it('returns empty array when given incomplete guess', () => {
+    expect(computeGuess('toad', 'mario')).toEqual([]);
+  })
+  it('when 2 letters are present but answer has only 1 of those letters', () => {
+    expect(computeGuess('samus','daisy')).toEqual([
+      LetterState.Present,
+      LetterState.Match,
+      LetterState.Miss,
+      LetterState.Miss,
+      LetterState.Miss
+    ])
+  })
+  it('when 1 letter matches but guess has more of the same letter', () => {
+    expect(computeGuess('luigi','daisy')).toEqual([
+      LetterState.Miss,
+      LetterState.Miss,
+      LetterState.Match,
+      LetterState.Miss,
+      LetterState.Miss
+    ])
+  })
 })
