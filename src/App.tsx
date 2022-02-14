@@ -9,10 +9,13 @@ export default function App() {
         <h1 className='text-4xl text-center'>Nintendle</h1>
       </header>
 
-      <main>
-        <WordRow letters="hel" />
-        <WordRow letters="hell" />
-        <WordRow letters="hello" />
+      <main className='grid grid-rows-6 gap-4'>
+        <WordRow letters='daisy' />
+        <WordRow letters='luigi' />
+        <WordRow letters='yoshi' />
+        <WordRow letters='marth' />
+        <WordRow letters='mario' />
+        <WordRow letters='ma' />
       </main>
     </div>
   )
