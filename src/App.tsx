@@ -20,17 +20,17 @@ export default function App() {
     setGuess(newGuess)
   }
 
-  let rows = [...state.guesses]
+  let rows = [...state.rows]
   
   if (rows.length < GUESS_LENGTH) {
-    rows.push(guess)
+    rows.push({ guess })
   }
   
   const numberOfGuessesRemaining = GUESS_LENGTH - rows.length
   
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''))
   
-  const isGameOver = state.guesses.length === GUESS_LENGTH
+  const isGameOver = state.rows.length === GUESS_LENGTH
 
 
 
@@ -51,8 +51,8 @@ export default function App() {
       </header>
 
       <main className='grid grid-rows-6 gap-4'>
-        {rows.map((word, index) => (
-          <WordRow key={index} letters={word} />
+        {rows.map(({guess, result}, index) => (
+          <WordRow key={index} letters={guess} result={result} />
         ))}
       </main>
 
