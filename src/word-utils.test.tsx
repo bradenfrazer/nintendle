@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { computeGuess, getRandomWord, LetterState } from './word-utils'
+import { computeGuess, getRandomWord, isValidWord, LetterState } from './word-utils'
 import { render, screen } from './test/test-utils'
 
 describe('getRandomWord', () => {
@@ -66,5 +66,14 @@ describe('computeGuess', () => {
       LetterState.Miss,
       LetterState.Miss
     ])
+  })
+})
+
+describe('isValidWord', () => {
+  it('works with a valid word', () => {
+    expect(isValidWord('mario')).toBe(true)
+  })
+  it('works with an invalid word', () => {
+    expect(isValidWord('hello')).toBe(false)
   })
 })

@@ -48,27 +48,31 @@ export function computeGuess(guess: string, answerString: string): LetterState[]
 
     result.forEach((curResult, resultIndex) => {
         if (curResult !== LetterState.Present) {
-          return;
+          return
         }
     
-        const guessLetter = guessAsArray[resultIndex];
+        const guessLetter = guessAsArray[resultIndex]
     
         answer.forEach((currentAnswerLetter, answerIndex) => {
           if (currentAnswerLetter !== guessLetter) {
-            return;
+            return
           }
     
           if (result[answerIndex] === LetterState.Match) {
-            result[resultIndex] = LetterState.Miss;
+            result[resultIndex] = LetterState.Miss
           }
     
           if (answerLetterCount[guessLetter] <= 0) {
-            result[resultIndex] = LetterState.Miss;
+            result[resultIndex] = LetterState.Miss
           }
-        });
+        })
     
-        answerLetterCount[guessLetter]--;
-    });
+        answerLetterCount[guessLetter]--
+    })
     
-    return result;
+    return result
+}
+
+export function isValidWord(word: string): boolean {
+    return wordBank.includes(word)
 }
