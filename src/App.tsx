@@ -70,6 +70,7 @@ export default function App() {
           left-4 right-4 top-1/4 p-6 m-3/4 mx-auto'>
             Game Over!
 
+            <WordRow letters={state.answer} />
           <button 
             className='block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
             onClick={() => { state.newGame(); setGuess(''); }}
