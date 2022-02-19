@@ -3,7 +3,10 @@ import wordBank from './word-bank.json'
 export const LETTER_LENGTH = 5
 
 export function getRandomWord() {
-    const randomIndex = Math.floor(Math.random() * wordBank.length)
+    function pair(x: number, y: number) { return ((x + y) * (x + y + 1)) / 2 + y; }
+    const d = new Date()
+    const seed = pair(d.getDay(), pair(d.getMonth(), d.getFullYear()))
+    const randomIndex = seed % wordBank.length
     return wordBank[randomIndex];
 }
 
