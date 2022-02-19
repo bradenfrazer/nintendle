@@ -1,3 +1,4 @@
+import "@fontsource/press-start-2p"
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'

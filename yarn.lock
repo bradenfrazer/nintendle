@@ -250,6 +250,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@fontsource/press-start-2p@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/press-start-2p/-/press-start-2p-4.5.1.tgz#5e6b9380dbb0ae26116310c57f73a511f1da76bb"
+  integrity sha512-VUhCH3hUv/zXdEEaTUk51h+7OoU0e7usSWyM49/NSKsnA01Jz9MF4y/aoUo4NMjsPUJ5eAISBFhb1RdoIZCsGA==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.0.5"
   resolved "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.0.5.tgz"
