@@ -4,7 +4,7 @@ import { computeGuess, getRandomWord, LetterState } from "./word-utils"
 
 export const GUESS_LENGTH = 6
 
-interface GuessRow {
+export interface GuessRow {
   guess: string,
   result?: LetterState[]
 }

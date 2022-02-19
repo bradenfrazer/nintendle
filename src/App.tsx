@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useStore, getDate, GUESS_LENGTH } from './store'
+import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
@@ -102,9 +102,11 @@ export default function App() {
             />
           <button 
             className='block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
-            onClick={() => { state.newGame(); setGuess(''); }}
+            onClick={() => { 
+              share(state.rows, isWon) 
+            }}
           >
-          New Game
+          Share
           </button>
         </div>
       )}
@@ -148,6 +150,32 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
   }, [])
 
   return [guess, setGuess, addGuessLetter]
+}
+
+function share(rows: GuessRow[], isWon: boolean) {
+
+  //source https://blog.logrocket.com/implementing-copy-to-clipboard-in-react-with-clipboard-api/
+  async function copyTextToClipboard(text: string) {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand('copy', true, text);
+    }
+  }
+
+  const date = new Date()
+  const dayOfYear = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000
+  
+  let endRow: string = ''
+  if (isWon) {
+    endRow = rows.length.toString()
+  } else {
+    endRow = 'X'
+  }
+  
+  const gameInfo = `Nintendle ${dayOfYear} ${endRow}/6`
+
+  copyTextToClipboard(gameInfo)
 }
 
 //source https://usehooks.com/usePrevious/
