@@ -48,8 +48,8 @@ export default function App() {
 
   return (
     <div className='h-screen relative flex flex-col justify-between'>
-      <header className='border-b border-grey-500 py-2 mb-4'>
-        <h1 className='text-4xl text-center'>Nintendle</h1>
+      <header className='flex justify-center border-b border-grey-500 py-2 mb-4'>
+        <h1 className='inline-block text-3xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1'>Nintendle</h1>
 
       </header>
 
