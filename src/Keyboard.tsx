@@ -34,7 +34,7 @@ export default function Keyboard({ onClick: onClickProp }: { onClick: (letter: s
                   key={index} 
                   className={styles}
                   onClick={onClick}
-                > {key}
+                >{key}
                 </button>
               ) 
             })}
