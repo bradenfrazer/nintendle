@@ -28,7 +28,7 @@ function CharacterBox({ value, state }: CharacterBoxProps) {
   const stateStyles = state == null ? '' : characterStateStyles[state] + ' text-white'
 
   return (
-    <span className={`inline-block border-2 p-4 
+    <span className={`inline-block border-retro p-4 
     before:inline-block before:content-['_'] 
     uppercase font-bold font-retro text-2xl text-center ${stateStyles}`}>{value}
     </span>

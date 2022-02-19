@@ -24,3 +24,14 @@ code {
 .font-retro {
   font-family: "Press Start 2P", monospace;
 }
+
+/* source: https://nostalgic-css.github.io/NES.css/ */
+.border-retro {
+  border-style: solid;
+  border-width: 4px;
+  border-image-slice: 3;
+  border-image-width: 3;
+  border-image-repeat: space;
+  border-image-source: url('retro-border.svg');
+  border-image-outset: 2;
+}
