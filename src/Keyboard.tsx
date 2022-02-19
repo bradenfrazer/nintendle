@@ -11,7 +11,7 @@ export default function Keyboard({ onClick: onClickProp }: { onClick: (letter: s
     onClickProp(letter!)
   }
   return (
-    <div>
+    <div className='w-96 mx-auto'>
       { keyboardKeys.map( (keyboardRow, rowIndex) => {
         return (
           <div key={rowIndex} className='flex justify-center my-2 space-x-1'>

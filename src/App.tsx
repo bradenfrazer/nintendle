@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     let id: any
     if (showInvalidGuess) {
-      id = setTimeout(() => setInvalidGuess(false), 2000)
+      id = setTimeout(() => setInvalidGuess(false), 1500)
     }
     return () => clearTimeout(id)
 
@@ -44,24 +44,26 @@ export default function App() {
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''))
   
   const isGameOver = state.gameState !== 'playing'
+  const isWon = state.gameState === 'won'
 
   return (
-    <div className='relative mx-auto w-96'>
-      <header className='border-b border-grey-500 pb-2 my-2'>
+    <div className='h-screen relative flex flex-col justify-between'>
+      <header className='border-b border-grey-500 py-2 mb-4'>
         <h1 className='text-4xl text-center'>Nintendle</h1>
 
       </header>
 
-      <main className='grid grid-rows-6 gap-4 mb-4'>
-        {rows.map(({guess, result}, index) => (
-          <WordRow 
-          key={index} 
-          letters={guess} 
-          result={result}
-          className={showInvalidGuess && currentRow === index ? 'animate-bounce' : ''}
-          
-          />
-        ))}
+      <main className='w-96 mx-auto flex flex-col '>
+        <div className='grid grid-rows-6 gap-4 mb-4'>
+          {rows.map(({guess, result}, index) => (
+            <WordRow 
+            key={index} 
+            letters={guess} 
+            result={result}
+            />
+          ))}
+        </div>
+
       </main>
 
       <Keyboard 
@@ -70,14 +72,26 @@ export default function App() {
         }}
       />
 
+      {showInvalidGuess && (
+        <div 
+          role='modal' 
+          className='absolute bg-gray-800 rounded border border-grey-500 text-center text-white 
+          inset-x-96 top-1/4 p-6 m-3/4 mx-auto'>
+            <p className='mb-4'>Not in word list</p>
+        </div>
+      )}
+
       { isGameOver && (
         <div 
           role='modal' 
           className='absolute bg-white rounded border border-grey-500 text-center 
-          left-4 right-4 top-1/4 p-6 m-3/4 mx-auto'>
-            Game Over!
+          inset-x-96 top-1/4 p-6 m-3/4 mx-auto'>
+            <p className='mb-4'>{ isWon ? 'You won!' : 'Game Over!' }</p>
 
-            <WordRow letters={state.answer} />
+            <WordRow 
+              letters={state.answer} 
+              className='items-center justify-items-center'
+            />
           <button 
             className='block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
             onClick={() => { state.newGame(); setGuess(''); }}
@@ -130,8 +144,6 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
 
 //source https://usehooks.com/usePrevious/
 function usePrevious<T>(value: T): T {
-  // The ref object is a generic container whose current property is mutable ...
-  // ... and can hold any value, similar to an instance property on a class
   const ref: any = useRef<T>()
   // Store current value in ref
   useEffect(() => {
