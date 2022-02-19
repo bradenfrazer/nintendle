@@ -11,11 +11,17 @@ interface GuessRow {
 
 interface StoreState {
   answer: string
+  last_played_date: string
   rows: GuessRow[]
   gameState: 'playing' | 'won' | 'lost'
   keyboardLetterState: { [letter: string]: LetterState }
   addGuess: (guess: string) => void
   newGame: (initialGuess?: string[]) => void
+}
+
+export const getDate = () => {
+  const todaysDate = new Date()
+  return todaysDate.toDateString()
 }
 
 export const useStore = create<StoreState>(
@@ -60,6 +66,7 @@ export const useStore = create<StoreState>(
       }
       return ({
         answer: getRandomWord(),
+        last_played_date: getDate(),
         rows: [],
         keyboardLetterState: {},
         gameState: 'playing',
@@ -67,6 +74,7 @@ export const useStore = create<StoreState>(
         newGame: (initialRows = [] ) => {
           set ({ 
             answer: getRandomWord(),
+            last_played_date: getDate(),
             rows: [],
             keyboardLetterState: {},
             gameState: 'playing'

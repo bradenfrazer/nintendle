@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useStore, GUESS_LENGTH } from './store'
+import { useStore, getDate, GUESS_LENGTH } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
@@ -45,6 +45,14 @@ export default function App() {
   
   const isGameOver = state.gameState !== 'playing'
   const isWon = state.gameState === 'won'
+
+  const date = getDate()
+  
+  if (state.last_played_date !== date) {
+    useStore.persist.clearStorage()
+    state.newGame()
+    setGuess('')
+  }
 
   return (
     <div className='h-screen relative flex flex-col justify-between'>
