@@ -52,13 +52,7 @@ export default function App() {
 
       </header>
 
-      <Keyboard 
-        onClick={(letter) => {
-          addGuessLetter(letter)
-        }}
-      />
-
-      <main className='grid grid-rows-6 gap-4'>
+      <main className='grid grid-rows-6 gap-4 mb-4'>
         {rows.map(({guess, result}, index) => (
           <WordRow 
           key={index} 
@@ -69,6 +63,12 @@ export default function App() {
           />
         ))}
       </main>
+
+      <Keyboard 
+        onClick={(letter) => {
+          addGuessLetter(letter)
+        }}
+      />
 
       { isGameOver && (
         <div 
