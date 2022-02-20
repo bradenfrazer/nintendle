@@ -1,4 +1,4 @@
-import wordBank from './word-bank.json'
+import wordBank from './dictionary.json'
 
 export const LETTER_LENGTH = 5
 
