@@ -1,7 +1,7 @@
 import re
 import json
 
-file = open('dump.xml', 'r')
+file = open('database.xml', 'r')
 d = dict()
 for line in file:
   line = re.sub('[^a-zA-Z0-9\n ]', '', line)
@@ -13,9 +13,9 @@ for line in file:
       else:
         d[word] = 1
 
-sorted_d = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse=True) if v >= 100}
+sorted_d = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse=True) if v >= 10}
 
-outfile = open('dictionary.json','w')
-# outfile.writelines(json.dumps(list(sorted_d.keys())))
-outfile.writelines(json.dumps(sorted_d))
+outfile = open('dictionary-temp.json','w')
+outfile.writelines(json.dumps(list(sorted_d.keys())))
+# outfile.writelines(json.dumps(sorted_d))
 outfile.close()
