@@ -21,6 +21,14 @@ code {
     monospace;
 }
 
+a {
+  color: #007ace;
+  transition: 0.3s ease-in-out;
+}
+a:hover {
+  opacity: 0.5;
+}
+
 .font-retro {
   font-family: "Press Start 2P", monospace;
 }
