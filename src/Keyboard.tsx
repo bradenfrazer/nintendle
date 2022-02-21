@@ -16,12 +16,12 @@ export default function Keyboard({ onClick: onClickProps }: { onClick: (letter: 
     onClickProps(returnProps)
   }
   return (
-    <div className='w-96 mx-auto'>
+    <div className='w-72 sm:w-96 mx-auto'>
       { keyboardKeys.map( (keyboardRow, rowIndex) => {
         return (
           <div key={rowIndex} className='flex justify-center my-2 space-x-1'>
             {keyboardRow.map((key, index) => {
-              let styles = 'flex justify-center rounded font-bold text-white uppercase px-1 py-2 flex-1'
+              let styles = 'flex justify-center rounded font-bold text-white uppercase px-1 py-1 flex-1'
               const letterState = keyStateStyles[keyboardLetterState[key]]
 
               if (key === '') {
