@@ -14,7 +14,7 @@ export default function App() {
   const state = useStore()
   const [guess, setGuess, addGuessLetter] = useGuess()
   const [showInvalidGuess, setInvalidGuess] = useState(false)
-  const [showStats, setStats] = useState(false)
+  const [showStats, setStats] = useState(true)
   const openStatsModal = () => setStats(true)
   const closeStatsModal = () => setStats(false)
   const [showAbout, setAbout] = useState(false)
