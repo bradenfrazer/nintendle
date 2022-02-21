@@ -1,5 +1,3 @@
-import CrossIcon from '../assets/cross.svg'
-
 export default function About() {
   return ( 
     <div>

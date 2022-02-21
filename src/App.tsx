@@ -1,7 +1,5 @@
 import "@fontsource/press-start-2p"
-import CrossIcon from '../assets/cross.svg'
 import InfoIcon from '../assets/info.svg'
-import ShareIcon from '../assets/share.svg'
 import StatsIcon from '../assets/stats.svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
@@ -10,6 +8,7 @@ import Keyboard from './Keyboard'
 import WordRow from './WordRow'
 import About from "./About"
 import Modal from "./Modal"
+import Stats from "./Stats"
 
 export default function App() {
   const state = useStore()
@@ -108,40 +107,10 @@ export default function App() {
         <About />
       </Modal>
 
-      { showStats && (
-        <div 
-          role='modal' 
-          className='h-screen w-full absolute flex items-center justify-center bg-modal'>
-            <div className='bg-white border-retro text-center 
-          w-full p-6 m-3/4 mx-auto
-          sm:w-3/4 lg:w-1/2'>
-              <div className='relative mb-8'>
-              <button className='absolute right-0' onClick={ closeStatsModal }>
-                <img className='w-4' src={CrossIcon} />
-              </button>
-                <p className='mb-2 font-retro'>{ isWon ? 'YOU WIN!' : 'Game Over!' }</p>
-                <h2 className='mb-2 text-3xl font-retro tracking-widest'>{(state.answer).toUpperCase()}</h2>
-                <p className='mb-2 font-retro'>guessed in { (GUESS_LENGTH - numberOfGuessesRemaining - 1) } tries</p>
-              </div>
-
-              <div className='block md:flex justify-between p-2'>  
-                <div>
-                  <p className='mb-2 font-retro'>next Nintendle in:</p>
-                  <p className='mb-2 font-retro text-2xl'>00:00:00</p>
-                </div>
-                <div className='flex-1 p-2'>        
-                  <button 
-                    className='flex border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
-                    onClick={() => { 
-                      share(state.rows, isWon) 
-                    }}
-                  >
-                  <img className='w-4' src={ShareIcon} /> Share
-                  </button>
-                </div>
-              </div>
-            </div>
-        </div>
+      { isGameOver && (
+        <Modal show={showStats} onClose={closeStatsModal}>
+          <Stats rows={state.rows} isWon={isWon} answer={state.answer}/>
+        </Modal>
       )}
     </div>
   )
@@ -183,32 +152,6 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
   }, [])
 
   return [guess, setGuess, addGuessLetter]
-}
-
-function share(rows: GuessRow[], isWon: boolean) {
-
-  //source https://blog.logrocket.com/implementing-copy-to-clipboard-in-react-with-clipboard-api/
-  async function copyTextToClipboard(text: string) {
-    if ('clipboard' in navigator) {
-      return await navigator.clipboard.writeText(text);
-    } else {
-      return document.execCommand('copy', true, text);
-    }
-  }
-
-  const date = new Date()
-  const dayOfYear = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000
-  
-  let endRow: string = ''
-  if (isWon) {
-    endRow = rows.length.toString()
-  } else {
-    endRow = 'X'
-  }
-  
-  const gameInfo = `Nintendle ${dayOfYear} ${endRow}/6`
-
-  copyTextToClipboard(gameInfo)
 }
 
 //source https://usehooks.com/usePrevious/
