@@ -8,6 +8,7 @@ import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
+import About from "./About"
 
 export default function App() {
   const state = useStore()
@@ -16,6 +17,9 @@ export default function App() {
   const [showStats, setStats] = useState(false)
   const openStatsModal = () => setStats(true)
   const closeStatsModal = () => setStats(false)
+  const [showAbout, setAbout] = useState(false)
+  const openAboutModal = () => setAbout(true)
+  const closeAboutModal = () => setAbout(false)
   const addGuess = useStore(s => s.addGuess)
   const previousGuess = usePrevious(guess)
 
@@ -65,7 +69,7 @@ export default function App() {
   return (
     <div className='h-screen relative flex flex-col justify-between'>
       <header className='flex justify-between border-b border-grey-500 px-4 py-2 mb-4'>
-        <button><img className='w-6' src={InfoIcon} /></button>
+        <button onClick={ openAboutModal }><img className='w-6' src={InfoIcon} /></button>
         <h1 className='inline-block text-2xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1
         sm:text-3xl'>Nintendle</h1>
         <button disabled={ !isGameOver } onClick={ openStatsModal }><img className='w-6' src={StatsIcon} /></button>
@@ -98,6 +102,9 @@ export default function App() {
             <p>Not in word list</p>
         </div>
       )}
+
+        <About show={showAbout} onClose={closeAboutModal} />
+      )
 
       { showStats && (
         <div 
