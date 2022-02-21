@@ -58,8 +58,7 @@ export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: b
 
   return ( 
     <div>
-      <div className='mb-16'>
-        <h2 className='mb-2 text-xl font-retro'>{ isWon ? 'YOU WIN!' : 'Game Over!' }</h2>
+      <div className='my-16'>
         { !isWon ? <p className='mb-2 font-retro'>Today's answer is</p> : '' }
         <p className='mb-2 text-3xl font-retro text-green-600 tracking-widest'>{ (answer).toUpperCase() }</p>
         { isWon ? <p className='mb-2 font-retro'>guessed in { (rows.length) } tries</p> : '' }

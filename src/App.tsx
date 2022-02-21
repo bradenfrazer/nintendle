@@ -103,12 +103,12 @@ export default function App() {
         </div>
       )}
 
-      <Modal show={showAbout} onClose={closeAboutModal}>
+      <Modal title='About' show={showAbout} onClose={closeAboutModal}>
         <About />
       </Modal>
 
       { isGameOver && (
-        <Modal show={showStats} onClose={closeStatsModal}>
+        <Modal title={ isWon ? 'YOU WIN!' : 'Game Over!' } show={showStats} onClose={closeStatsModal}>
           <Stats rows={state.rows} isWon={isWon} answer={state.answer}/>
         </Modal>
       )}
