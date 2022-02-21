@@ -1,4 +1,8 @@
 import "@fontsource/press-start-2p"
+import CrossIcon from '../assets/cross.svg'
+import InfoIcon from '../assets/info.svg'
+import ShareIcon from '../assets/share.svg'
+import StatsIcon from '../assets/stats.svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'
@@ -9,6 +13,9 @@ export default function App() {
   const state = useStore()
   const [guess, setGuess, addGuessLetter] = useGuess()
   const [showInvalidGuess, setInvalidGuess] = useState(false)
+  const [showStats, setStats] = useState(false)
+  const openStatsModal = () => setStats(true)
+  const closeStatsModal = () => setStats(false)
   const addGuess = useStore(s => s.addGuess)
   const previousGuess = usePrevious(guess)
 
@@ -44,7 +51,7 @@ export default function App() {
   
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''))
   
-  const isGameOver = state.gameState !== 'playing'
+  let isGameOver = state.gameState !== 'playing'
   const isWon = state.gameState === 'won'
 
   const date = getDate()
@@ -57,9 +64,10 @@ export default function App() {
 
   return (
     <div className='h-screen relative flex flex-col justify-between'>
-      <header className='flex justify-center border-b border-grey-500 py-2 mb-4'>
+      <header className='flex justify-between border-b border-grey-500 px-4 py-2 mb-4'>
+        <button><img className='w-6' src={InfoIcon} /></button>
         <h1 className='inline-block text-3xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1'>Nintendle</h1>
-
+        <button onClick={ openStatsModal }><img className='w-6' src={StatsIcon} /></button>
       </header>
 
       <main className='w-96 mx-auto flex flex-col '>
@@ -90,25 +98,37 @@ export default function App() {
         </div>
       )}
 
-      { isGameOver && (
+      { showStats && (
         <div 
           role='modal' 
-          className='absolute bg-white rounded border border-grey-500 text-center 
+          className='absolute bg-white border-retro text-center 
           inset-x-96 top-1/4 p-6 m-3/4 mx-auto'>
-            <p className='mb-4'>{ isWon ? 'You won!' : 'Game Over!' }</p>
+            <div className='relative mb-8'>
+            <button className='absolute right-0' onClick={ closeStatsModal }>
+              <img className='w-4' src={CrossIcon} />
+            </button>
+              <p className='mb-2 font-retro'>{ isWon ? 'YOU WIN!' : 'Game Over!' }</p>
+              <h2 className='mb-2 text-3xl font-retro tracking-widest'>{(state.answer).toUpperCase()}</h2>
+              <p className='mb-2 font-retro'>guessed in { (GUESS_LENGTH - numberOfGuessesRemaining - 1) } tries</p>
+            </div>
 
-            <WordRow 
-              letters={state.answer} 
-              className='items-center justify-items-center'
-            />
-          <button 
-            className='block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
-            onClick={() => { 
-              share(state.rows, isWon) 
-            }}
-          >
-          Share
-          </button>
+            <div className='flex justify-between p-2'>  
+              <div>
+                <p className='mb-2 font-retro'>next Nintendle in:</p>
+                <p className='mb-2 font-retro text-2xl'>00:00:00</p>
+              </div>
+              <div className='flex-1 p-2'>        
+                <button 
+                  className='flex border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
+                  onClick={() => { 
+                    share(state.rows, isWon) 
+                  }}
+                >
+                <img className='w-4' src={ShareIcon} /> Share
+                </button>
+              </div>
+            </div>
+
         </div>
       )}
     </div>

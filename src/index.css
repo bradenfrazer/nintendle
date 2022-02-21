@@ -27,6 +27,11 @@ code {
 
 /* source: https://nostalgic-css.github.io/NES.css/ */
 .border-retro {
+  border-color: #000;
+  border-style: solid;
+  border-width: 4px;
+}
+.border-retro-rounded {
   border-style: solid;
   border-width: 4px;
   border-image-slice: 3;
