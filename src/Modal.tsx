@@ -1,7 +1,19 @@
+import { useEffect } from 'react'
 import CrossIcon from '../assets/cross.svg'
 
 export default function Modal({show, onClose, children} : {show: boolean, onClose: () => void, children: JSX.Element}) {
   if (!show) return null
+
+  const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+  }
+
+  useEffect( ()=> {
+    document.addEventListener('keydown', closeOnEscapeKeyDown)
+    return () => {
+      document.removeEventListener('keydown', closeOnEscapeKeyDown)
+    }
+  }, [])
 
   return ( 
     <div role='modal' 
