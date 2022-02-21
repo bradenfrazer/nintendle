@@ -9,6 +9,7 @@ import { isValidWord, LETTER_LENGTH } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
 import About from "./About"
+import Modal from "./Modal"
 
 export default function App() {
   const state = useStore()
@@ -103,8 +104,9 @@ export default function App() {
         </div>
       )}
 
-        <About show={showAbout} onClose={closeAboutModal} />
-      )
+      <Modal show={showAbout} onClose={closeAboutModal}>
+        <About />
+      </Modal>
 
       { showStats && (
         <div 
