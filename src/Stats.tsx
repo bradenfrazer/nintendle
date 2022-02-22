@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ShareIcon from '../assets/share.svg'
+import FeatherIcon from 'feather-icons-react'
 import { GuessRow } from './store';
 
 export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: boolean, answer: string}) {
@@ -95,14 +95,16 @@ export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: b
         <div className='flex-1 p-2'>        
           <button 
             disabled={!showShareButton}
-            className='flex border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
+            className={`flex border rounded p-2 mt-4 mx-auto text-white shadow
+            transition-all duration-300 ease-in-out
+            ${ showShareButton ? 'border-green-500 bg-green-500 hover:border-green-400 hover:bg-green-400' : 'border-gray-400 bg-gray-400' }`}
             onClick={() => { 
               share(rows, isWon)
               setShareButton(false)
             }}> 
             { showShareButton ? 
-              <div>
-                <img className='w-4' src={ShareIcon} />
+              <div className='flex align-center'>
+                <div style={{marginTop: '2px'}} className='mr-1'><FeatherIcon icon='share-2' size='20' /></div>
                 <span>Share</span>
               </div>
               :

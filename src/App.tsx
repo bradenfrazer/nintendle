@@ -1,6 +1,5 @@
 import "@fontsource/press-start-2p"
-import InfoIcon from '../assets/info.svg'
-import StatsIcon from '../assets/stats.svg'
+import FeatherIcon from 'feather-icons-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
 import { isValidWord, LETTER_LENGTH } from './word-utils'
@@ -69,10 +68,21 @@ export default function App() {
   return (
     <div className='h-screen relative flex flex-col justify-between'>
       <header className='flex justify-between border-b border-grey-500 px-4 py-2 mb-4'>
-        <button onClick={ openAboutModal }><img className='w-6' src={InfoIcon} /></button>
+        <button 
+          onClick={ openAboutModal }
+          className="transition-all duration-300 ease-in-out
+            hover:opacity-50">
+              <FeatherIcon icon='info' />
+        </button>
         <h1 className='inline-block text-2xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1
         sm:text-3xl'>Nintendle</h1>
-        <button disabled={ !isGameOver } onClick={ openStatsModal }><img className='w-6' src={StatsIcon} /></button>
+        <button 
+        disabled={ !isGameOver } 
+        onClick={ openStatsModal }
+        className="transition-all duration-300 ease-in-out
+            hover:opacity-50">
+          <FeatherIcon icon='bar-chart-2' />
+        </button>
       </header>
 
       <main className='w-72 sm:w-96 mx-auto flex flex-col'>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import CrossIcon from '../assets/cross.svg'
+import FeatherIcon from 'feather-icons-react'
 
 interface ModalProps {
   title?: string, 
@@ -30,8 +30,11 @@ export default function Modal({title, show, onClose, children} : ModalProps) {
       w-full p-6 m-3/4 mx-auto
       sm:w-3/4 lg:w-1/2'>
           <div className='modal-header relative'>
-            <button className='absolute right-0' onClick={ onClose }>
-              <img className='w-4' src={ CrossIcon } />
+            <button 
+            className='absolute right-0 transition-all duration-300 ease-in-out
+            hover:opacity-50' 
+            onClick={ onClose }>
+              <FeatherIcon icon='x' />
             </button>
             <h2 className='mb-2 text-2xl font-retro tracking-widest'>{ title }</h2>
           </div>
