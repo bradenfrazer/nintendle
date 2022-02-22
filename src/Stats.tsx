@@ -52,8 +52,22 @@ export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: b
     }
     
     const gameInfo = `Nintendle ${dayOfYear} ${endRow}/6`
+
+    let emojiBoard = ''
+    rows.forEach(row => {
+      if (!row.result) return
+
+      let emojiRow = `\n`
+      row.result.forEach(letterState => {
+        if (letterState === 'Miss') emojiRow += '⬛️'
+        else if (letterState === 'Present') emojiRow += '🟨'
+        else if (letterState === 'Match') emojiRow += '🟩'
+        else return
+      })
+      emojiBoard += emojiRow
+    })
   
-    copyTextToClipboard(gameInfo)
+    copyTextToClipboard(gameInfo + emojiBoard)
   }
 
   return ( 
