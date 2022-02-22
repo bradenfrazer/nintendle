@@ -5,7 +5,7 @@ export const LETTER_LENGTH = 5
 export function getRandomWord() {
     function pair(x: number, y: number) { return ((x + y) * (x + y + 1)) / 2 + y; }
     const d = new Date()
-    const seed = pair(d.getDay(), pair(d.getMonth(), d.getFullYear()))
+    const seed = pair(d.getDate(), d.getMonth())
     const randomIndex = seed % wordBank.length
     return wordBank[randomIndex];
 }
