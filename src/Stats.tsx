@@ -25,10 +25,19 @@ export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: b
     const timer = setTimeout(() => {
       setTimeLeft(getTimeUntilNextGame())
     }, 1000)
-  
+    
     return () => clearTimeout(timer)
   })
+  
+  const [showShareButton, setShareButton] = useState(true)
+  useEffect(() => {
+    let id: any
+    if (!showShareButton) {
+      id = setTimeout(() => setShareButton(true), 3000)
+    }
+    return () => clearTimeout(id)
 
+  }, [showShareButton])
 
   const share = (rows: GuessRow[], isWon: boolean) => {
 
@@ -85,12 +94,20 @@ export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: b
         </div>
         <div className='flex-1 p-2'>        
           <button 
+            disabled={!showShareButton}
             className='flex border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto text-white shadow'
             onClick={() => { 
-              share(rows, isWon) 
-            }}
-          >
-          <img className='w-4' src={ShareIcon} /> Share
+              share(rows, isWon)
+              setShareButton(false)
+            }}> 
+            { showShareButton ? 
+              <div>
+                <img className='w-4' src={ShareIcon} />
+                <span>Share</span>
+              </div>
+              :
+              <span>Copied</span>
+           }
           </button>
         </div>
       </div>
