@@ -13,7 +13,7 @@ export default function WordRow({letters: lettersProp = '', result = [], classNa
   return (
     <div className={`grid grid-cols-5 gap-4 ${className}`}>
       { letters.map((char, index) => (
-          <CharacterBox key={index} value={char} state={result[index]} />
+          <CharacterBox key={index} value={char} state={result[index]} position={index} />
       ) ) }
     </div> 
   )
@@ -22,18 +22,23 @@ export default function WordRow({letters: lettersProp = '', result = [], classNa
 interface CharacterBoxProps {
     value: string
     state?: LetterState
+    position: number
 }
 
-function CharacterBox({ value, state }: CharacterBoxProps) {
+function CharacterBox({ value, state, position }: CharacterBoxProps) {
   const stateStyles = state == null ? '' : characterStateStyles[state] + ' text-white'
-
+  const animationStyles: React.CSSProperties = {
+    transitionDelay: `${position * 300}ms`,
+    transform: `${state == null ? "" : "rotateX(360deg)"}`
+  }
   return (
     <span className={`inline-flex justify-center items-center w-12 h-12
     border-retro-rounded  
     before:inline-block before:content-['_'] 
     uppercase font-bold font-retro text-xl text-center leading-none
     sm:text-2xl sm:w-16 sm:h-16
-     ${stateStyles}`}>{value}
+    transition transition-all duration-700 ease-in-out
+    ${stateStyles}`} style={animationStyles} >{value} 
     </span>
   )
 }
