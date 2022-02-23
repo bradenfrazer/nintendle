@@ -92,4 +92,4 @@ export const useStore = create<StoreState>(
   )
 )
 
-useStore.persist.clearStorage()
+//useStore.persist.clearStorage()
