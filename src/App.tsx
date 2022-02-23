@@ -81,8 +81,8 @@ export default function App() {
         <button 
         disabled={ !isGameOver } 
         onClick={ openStatsModal }
-        className="transition-all duration-300 ease-in-out
-            hover:opacity-50">
+        className={`transition-all duration-300 ease-in-out
+            ${ isGameOver ? "hover:opacity-50" : "opacity-25"}`}>
           <FeatherIcon icon='bar-chart-2' />
         </button>
       </header>
