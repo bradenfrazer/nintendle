@@ -58,10 +58,12 @@ export const useStore = create<StoreState>(
           }
         })
 
+        const gameState = didWin ? 'won' : (rows.length === GUESS_LENGTH ? 'lost' : 'playing')
+
         set(state => ({
           rows,
           keyboardLetterState,
-          gameState: didWin ? 'won' : (rows.length === GUESS_LENGTH ? 'lost' : 'playing' )
+          gameState 
         }))
       }
       return ({
@@ -90,4 +92,4 @@ export const useStore = create<StoreState>(
   )
 )
 
-//useStore.persist.clearStorage()
+useStore.persist.clearStorage()

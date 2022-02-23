@@ -22,6 +22,10 @@ export default function App() {
   const addGuess = useStore(s => s.addGuess)
   const previousGuess = usePrevious(guess)
 
+  const isGameOver = state.gameState !== 'playing'
+  const isWon = state.gameState === 'won'
+  const isAboutOpen = showAbout
+
   useEffect(() => {
     let id: any
     if (showInvalidGuess) {
@@ -31,6 +35,7 @@ export default function App() {
 
   }, [showInvalidGuess])
   useEffect(() => {
+    if (isGameOver || isAboutOpen) return 
     if (guess.length === 0 && previousGuess?.length === LETTER_LENGTH) {
       if (isValidWord(previousGuess)) {
         addGuess(previousGuess)
@@ -53,9 +58,6 @@ export default function App() {
   const numberOfGuessesRemaining = GUESS_LENGTH - rows.length
   
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''))
-  
-  const isGameOver = state.gameState !== 'playing'
-  const isWon = state.gameState === 'won'
 
   const date = getDate()
   
@@ -102,6 +104,7 @@ export default function App() {
         onClick={(letter) => {
           addGuessLetter(letter)
         }}
+        disabled={isGameOver}
       />
 
       { showInvalidGuess && (
@@ -127,6 +130,7 @@ export default function App() {
 }
 
 function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (letter: string) => void] {
+  const gameState = useStore((s) => s.gameState)
   const [guess, setGuess] = useState('')
 
   const addGuessLetter = (letter: string) => {
@@ -150,6 +154,9 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
   }
 
   const onKeyDown = (e: KeyboardEvent) => {
+    console.log(gameState)
+    //if (gameState !== 'playing') return 
+    
     let letter = e.key
     addGuessLetter(letter)
   }

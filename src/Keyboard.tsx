@@ -2,7 +2,7 @@ import React from "react"
 import { useStore } from "./store"
 import { LetterState } from "./word-utils"
 
-export default function Keyboard({ onClick: onClickProps }: { onClick: (letter: string) => void }) {
+export default function Keyboard({ onClick: onClickProps, disabled }: { onClick: (letter: string) => void, disabled: boolean }) {
   const keyboardLetterState = useStore((s) => s.keyboardLetterState)
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,6 +39,7 @@ export default function Keyboard({ onClick: onClickProps }: { onClick: (letter: 
                   key={index} 
                   className={styles}
                   onClick={onClick}
+                  disabled={disabled}
                 >{key === 'Backspace' ? backspace : key}
                 </button>
               ) 
