@@ -25,7 +25,7 @@ export default function App() {
   useEffect(() => {
     let id: any
     if (showInvalidGuess) {
-      id = setTimeout(() => setInvalidGuess(false), 15000)
+      id = setTimeout(() => setInvalidGuess(false), 1500)
     }
     return () => clearTimeout(id)
 
