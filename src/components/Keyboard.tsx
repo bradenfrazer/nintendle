@@ -1,6 +1,6 @@
 import React from "react"
-import { useStore } from "./store"
-import { LetterState } from "./word-utils"
+import { useStore } from "../store"
+import { LetterState } from "../utils/word-utils"
 
 export default function Keyboard({ onClick: onClickProps, disabled }: { onClick: (letter: string) => void, disabled: boolean }) {
   const keyboardLetterState = useStore((s) => s.keyboardLetterState)

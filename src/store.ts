@@ -1,6 +1,6 @@
 import create from "zustand"
 import { persist } from "zustand/middleware"
-import { computeGuess, getRandomWord, LetterState } from "./word-utils"
+import { computeGuess, getRandomWord, LetterState } from "./utils/word-utils"
 
 export const NUMBER_OF_GUESSES = 6
 export const WORD_LENGTH = 5

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react'
-import { GuessRow } from './store';
+import { GuessRow } from '../store';
 
 export default function Stats({rows, isWon, answer}: {rows: GuessRow[], isWon: boolean, answer: string}) {
 

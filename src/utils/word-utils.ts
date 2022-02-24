@@ -1,5 +1,5 @@
-import solutionDictionary from './dictionary.json'
-import englishDictionary from '../scripts/english-dictionary.json'
+import solutionDictionary from '../utils/dictionary.json'
+import englishDictionary from '../utils/english-dictionary.json'
 
 export function getRandomWord() {
     function pair(x: number, y: number) { return ((x + y) * (x + y + 1)) / 2 + y; }

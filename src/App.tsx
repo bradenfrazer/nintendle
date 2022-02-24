@@ -2,12 +2,12 @@ import '@fontsource/press-start-2p'
 import FeatherIcon from 'feather-icons-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, NUMBER_OF_GUESSES, WORD_LENGTH } from './store'
-import { isValidWord } from './word-utils'
-import Keyboard from './Keyboard'
-import WordRow from './WordRow'
-import About from './About'
-import Modal from './Modal'
-import Stats from './Stats'
+import { isValidWord } from './utils/word-utils'
+import Keyboard from './components/Keyboard'
+import WordRow from './components/WordRow'
+import About from './components/About'
+import Modal from './components/Modal'
+import Stats from './components/Stats'
 
 export default function App() {
   const state = useStore()
@@ -78,6 +78,7 @@ export default function App() {
     setGuess('')
   }
 
+  //main app ui
   return (
     <div className='h-screen relative flex flex-col justify-between'>
       <header className='flex justify-between border-b border-grey-500 px-4 py-2 mb-4'>
@@ -164,6 +165,7 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
     })
   }
 
+  //handle guessing from keyboard
   const onKeyDown = (e: KeyboardEvent) => {
     if (gameState !== 'playing') return 
     

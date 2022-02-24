@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { computeGuess, getRandomWord, isValidWord, LetterState } from './word-utils'
-import { render, screen } from './test/test-utils'
+import { render, screen } from '../test/test-utils'
 
 describe('getRandomWord', () => {
   it('random word', () => {

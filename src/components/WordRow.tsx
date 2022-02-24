@@ -1,5 +1,5 @@
-import { WORD_LENGTH } from "./store"
-import { LetterState } from "./word-utils"
+import { WORD_LENGTH } from "../store"
+import { LetterState } from "../utils/word-utils"
 
 interface WordRowProps {
   letters: string,
