@@ -27,7 +27,7 @@ interface CharacterBoxProps {
 }
 
 function CharacterBox({ value, state, position }: CharacterBoxProps) {
-  const stateStyles = state == null ? '' : characterStateStyles[state] + ' text-white'
+  const stateStyles = state == null ? 'text-gray-800' : characterStateStyles[state] + ' text-white'
   const animationStyles: React.CSSProperties = {
     transitionDelay: `${position * 300}ms`,
     transform: `${state == null ? "" : "rotateX(360deg)"}`
