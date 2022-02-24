@@ -1,8 +1,8 @@
 import "@fontsource/press-start-2p"
 import FeatherIcon from 'feather-icons-react'
 import React, { useEffect, useRef, useState } from 'react'
-import { useStore, getDate, GUESS_LENGTH, GuessRow } from './store'
-import { isValidWord, LETTER_LENGTH } from './word-utils'
+import { useStore, getDate, NUMBER_OF_GUESSES, WORD_LENGTH } from './store'
+import { isValidWord } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
 import About from "./About"
@@ -11,23 +11,25 @@ import Stats from "./Stats"
 
 export default function App() {
   const state = useStore()
+
   const [guess, setGuess, addGuessLetter] = useGuess()
   const [showInvalidGuess, setInvalidGuess] = useState(false)
-  const [showStats, setStats] = useState(true)
-  const openStatsModal = () => setStats(true)
-  const closeStatsModal = () => setStats(false)
-  const [showAbout, setAbout] = useState(false)
-  const openAboutModal = () => setAbout(true)
-  const closeAboutModal = () => setAbout(false)
   const addGuess = useStore(s => s.addGuess)
   const previousGuess = usePrevious(guess)
 
+  const [showStats, setStats] = useState(true)
+  const openStatsModal = () => setStats(true)
+  const closeStatsModal = () => setStats(false)
+
+  const [showAbout, setAbout] = useState(false)
+  const openAboutModal = () => setAbout(true)
+  const closeAboutModal = () => setAbout(false)
+  
   const [showGameOver, setGameOver] = useState(false)
   const isGameOver = state.gameState !== 'playing'
   const isWon = state.gameState === 'won'
-  const isAboutOpen = showAbout
 
-  //delay game over screen until guess finishes animating
+  //delay game over screen until last guess finishes animating
   useEffect(() => {
     let id: any
     if (isGameOver) {
@@ -49,8 +51,8 @@ export default function App() {
 
   //handle guess submissions
   useEffect(() => {
-    if (isGameOver || isAboutOpen) return 
-    if (guess.length === 0 && previousGuess?.length === LETTER_LENGTH) {
+    if (isGameOver || showAbout) return 
+    if (guess.length === 0 && previousGuess?.length === WORD_LENGTH) {
       if (isValidWord(previousGuess)) {
         addGuess(previousGuess)
         setInvalidGuess(false)
@@ -62,15 +64,10 @@ export default function App() {
   }, [guess])
 
   let rows = [...state.rows]
-
-  let currentRow = 0
-
-  if (rows.length < GUESS_LENGTH) {
-    currentRow = rows.push({ guess }) - 1
+  if (rows.length < NUMBER_OF_GUESSES) {
+    rows.push({ guess })
   }
-  
-  const numberOfGuessesRemaining = GUESS_LENGTH - rows.length
-  
+  const numberOfGuessesRemaining = NUMBER_OF_GUESSES - rows.length
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''))
 
   const date = getDate()
@@ -156,11 +153,11 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
           return newGuess.slice(0, -1)
         case 'Enter':
           //submit guess
-          if (newGuess.length === LETTER_LENGTH) {
+          if (newGuess.length === WORD_LENGTH) {
             return ''
           }
       }
-      if (curGuess.length === LETTER_LENGTH) {
+      if (curGuess.length === WORD_LENGTH) {
         return curGuess
       }
       return newGuess
@@ -168,8 +165,7 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
   }
 
   const onKeyDown = (e: KeyboardEvent) => {
-    console.log(gameState)
-    //if (gameState !== 'playing') return 
+    if (gameState !== 'playing') return 
     
     let letter = e.key
     addGuessLetter(letter)

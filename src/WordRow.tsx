@@ -1,4 +1,5 @@
-import { LetterState, LETTER_LENGTH } from "./word-utils"
+import { WORD_LENGTH } from "./store"
+import { LetterState } from "./word-utils"
 
 interface WordRowProps {
   letters: string,
@@ -7,7 +8,7 @@ interface WordRowProps {
 }
 
 export default function WordRow({letters: lettersProp = '', result = [], className = ''}: WordRowProps) {
-  const lettersRemaining = LETTER_LENGTH - lettersProp.length
+  const lettersRemaining = WORD_LENGTH - lettersProp.length
   const letters = lettersProp.split('').concat(Array(lettersRemaining).fill(''))
   
   return (

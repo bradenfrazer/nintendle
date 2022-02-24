@@ -1,13 +1,11 @@
-import wordBank from './dictionary.json'
-
-export const LETTER_LENGTH = 5
+import solutionDictionary from './dictionary.json'
 
 export function getRandomWord() {
     function pair(x: number, y: number) { return ((x + y) * (x + y + 1)) / 2 + y; }
     const d = new Date()
     const seed = pair(d.getDate(), d.getMonth())
-    const randomIndex = seed % wordBank.length
-    return wordBank[randomIndex];
+    const randomIndex = seed % solutionDictionary.length
+    return solutionDictionary[randomIndex];
 }
 
 export enum LetterState {
@@ -77,5 +75,5 @@ export function computeGuess(guess: string, answerString: string): LetterState[]
 }
 
 export function isValidWord(word: string): boolean {
-    return wordBank.includes(word)
+    return solutionDictionary.includes(word)
 }

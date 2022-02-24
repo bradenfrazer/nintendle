@@ -2,7 +2,8 @@ import create from "zustand"
 import { persist } from "zustand/middleware"
 import { computeGuess, getRandomWord, LetterState } from "./word-utils"
 
-export const GUESS_LENGTH = 6
+export const NUMBER_OF_GUESSES = 6
+export const WORD_LENGTH = 5
 
 export interface GuessRow {
   guess: string,
@@ -45,7 +46,7 @@ export const useStore = create<StoreState>(
 
           const currentLetterState = keyboardLetterState[resultGuessLetter]
 
-          switch(currentLetterState) {
+          switch (currentLetterState) {
             case LetterState.Match:
               break
             case LetterState.Present:
@@ -58,7 +59,7 @@ export const useStore = create<StoreState>(
           }
         })
 
-        const gameState = didWin ? 'won' : (rows.length === GUESS_LENGTH ? 'lost' : 'playing')
+        const gameState = didWin ? 'won' : (rows.length === NUMBER_OF_GUESSES ? 'lost' : 'playing')
 
         set(state => ({
           rows,
