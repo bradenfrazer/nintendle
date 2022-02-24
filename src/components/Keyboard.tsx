@@ -2,7 +2,12 @@ import React from "react"
 import { useStore } from "../store"
 import { LetterState } from "../utils/word-utils"
 
-export default function Keyboard({ onClick: onClickProps, disabled }: { onClick: (letter: string) => void, disabled: boolean }) {
+interface KeyboardProps { 
+  onClick: (letter: string) => void, 
+  disabled: boolean 
+}
+
+export default function Keyboard({ onClick: onClickProps, disabled }: KeyboardProps) {
   const keyboardLetterState = useStore((s) => s.keyboardLetterState)
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,6 +29,7 @@ export default function Keyboard({ onClick: onClickProps, disabled }: { onClick:
               let styles = 'flex justify-center rounded font-bold text-white uppercase px-1 py-1 flex-1'
               const letterState = keyStateStyles[keyboardLetterState[key]]
 
+              //disable extra spacer keys
               if (key === '') {
                 styles += ' pointer-events-none'
               }
@@ -34,7 +40,7 @@ export default function Keyboard({ onClick: onClickProps, disabled }: { onClick:
                 styles += ` bg-gray-400`
               }
 
-              return(
+              return (
                 <button 
                   key={index} 
                   className={styles}

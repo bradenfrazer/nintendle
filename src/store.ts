@@ -20,7 +20,7 @@ interface StoreState {
   newGame: (initialGuess?: string[]) => void
 }
 
-export const getDate = () => {
+export const getDate = (): string => {
   const todaysDate = new Date()
   return todaysDate.toDateString()
 }

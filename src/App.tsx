@@ -73,6 +73,7 @@ export default function App() {
   const date = getDate()
   
   if (state.last_played_date !== date) {
+    //@ts-ignore
     useStore.persist.clearStorage()
     state.newGame()
     setGuess('')
@@ -109,7 +110,6 @@ export default function App() {
             />
           ))}
         </div>
-
       </main>
 
       <Keyboard 

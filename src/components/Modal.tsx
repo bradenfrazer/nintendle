@@ -9,8 +9,9 @@ interface ModalProps {
 }
 
 export default function Modal({title, show, onClose, children} : ModalProps) {
+  //let user exit modal with escape key
   const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+    if (e.key === 'Escape') onClose()
   }
 
   useEffect( ()=> {
