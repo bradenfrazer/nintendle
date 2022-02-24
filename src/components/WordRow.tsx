@@ -12,7 +12,7 @@ export default function WordRow({letters: lettersProp = '', result = [], classNa
   const letters = lettersProp.split('').concat(Array(lettersRemaining).fill(''))
   
   return (
-    <div className={`grid grid-cols-5 gap-4 ${className}`}>
+    <div className={`wordRow grid grid-cols-5 gap-4 ${className}`}>
       { letters.map((char, index) => (
           <CharacterBox key={index} value={char} state={result[index]} position={index} />
       ) ) }
@@ -33,7 +33,7 @@ function CharacterBox({ value, state, position }: CharacterBoxProps) {
     transform: `${state == null ? "" : "rotateX(360deg)"}`
   }
   return (
-    <span className={`inline-flex justify-center items-center w-12 h-12
+    <span className={`characterBox inline-flex justify-center items-center w-12 h-12
     border-retro-rounded  
     before:inline-block before:content-['_'] 
     uppercase font-bold font-retro text-xl text-center leading-none

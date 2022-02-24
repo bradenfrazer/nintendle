@@ -89,7 +89,7 @@ export default function App() {
             hover:opacity-50">
               <FeatherIcon icon='info' />
         </button>
-        <h1 className='inline-block text-2xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1
+        <h1 id='logo' className='inline-block text-2xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1
         sm:text-3xl'>Nintendle</h1>
         <button 
         disabled={ !isGameOver } 
@@ -101,7 +101,7 @@ export default function App() {
       </header>
 
       <main className='w-72 sm:w-96 mx-auto flex flex-col'>
-        <div className='grid grid-rows-6 gap-4 mb-4'>
+        <div id='gameBoard' className='grid grid-rows-6 gap-4 mb-4'>
           {rows.map(({guess, result}, index) => (
             <WordRow 
             key={index} 

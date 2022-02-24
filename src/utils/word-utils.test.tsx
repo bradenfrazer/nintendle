@@ -74,6 +74,6 @@ describe('isValidWord', () => {
     expect(isValidWord('mario')).toBe(true)
   })
   it('works with an invalid word', () => {
-    expect(isValidWord('hello')).toBe(false)
+    expect(isValidWord('aaaaa')).toBe(false)
   })
 })
