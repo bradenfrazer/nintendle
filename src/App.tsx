@@ -22,10 +22,22 @@ export default function App() {
   const addGuess = useStore(s => s.addGuess)
   const previousGuess = usePrevious(guess)
 
+  const [showGameOver, setGameOver] = useState(false)
   const isGameOver = state.gameState !== 'playing'
   const isWon = state.gameState === 'won'
   const isAboutOpen = showAbout
 
+  //delay game over screen until guess finishes animating
+  useEffect(() => {
+    let id: any
+    if (isGameOver) {
+      id = setTimeout(() => setGameOver(true), 2000)
+    }
+    return () => clearTimeout(id)
+
+  }, [isGameOver])
+
+  //handle invalid guess pop up
   useEffect(() => {
     let id: any
     if (showInvalidGuess) {
@@ -34,6 +46,8 @@ export default function App() {
     return () => clearTimeout(id)
 
   }, [showInvalidGuess])
+
+  //handle guess submissions
   useEffect(() => {
     if (isGameOver || isAboutOpen) return 
     if (guess.length === 0 && previousGuess?.length === LETTER_LENGTH) {
@@ -120,7 +134,7 @@ export default function App() {
         <About />
       </Modal>
 
-      { isGameOver && (
+      { showGameOver && (
         <Modal title={ isWon ? 'YOU WIN!' : 'Game Over!' } show={showStats} onClose={closeStatsModal}>
           <Stats rows={state.rows} isWon={isWon} answer={state.answer}/>
         </Modal>
