@@ -1,13 +1,13 @@
-import "@fontsource/press-start-2p"
+import '@fontsource/press-start-2p'
 import FeatherIcon from 'feather-icons-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore, getDate, NUMBER_OF_GUESSES, WORD_LENGTH } from './store'
 import { isValidWord } from './word-utils'
 import Keyboard from './Keyboard'
 import WordRow from './WordRow'
-import About from "./About"
-import Modal from "./Modal"
-import Stats from "./Stats"
+import About from './About'
+import Modal from './Modal'
+import Stats from './Stats'
 
 export default function App() {
   const state = useStore()
@@ -132,7 +132,7 @@ export default function App() {
       </Modal>
 
       { showGameOver && (
-        <Modal title={ isWon ? 'YOU WIN!' : 'Game Over!' } show={showStats} onClose={closeStatsModal}>
+        <Modal title={ isWon ? 'You win!' : 'Game Over!' } show={showStats} onClose={closeStatsModal}>
           <Stats rows={state.rows} isWon={isWon} answer={state.answer}/>
         </Modal>
       )}

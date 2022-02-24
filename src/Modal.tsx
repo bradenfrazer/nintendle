@@ -36,7 +36,7 @@ export default function Modal({title, show, onClose, children} : ModalProps) {
             onClick={ onClose }>
               <FeatherIcon icon='x' />
             </button>
-            <h2 className='mb-2 text-2xl font-retro tracking-widest'>{ title }</h2>
+            <h2 className='mb-2 text-2xl font-retro uppercase tracking-widest'>{ title }</h2>
           </div>
           <div className='modal-content'>
             { children }
