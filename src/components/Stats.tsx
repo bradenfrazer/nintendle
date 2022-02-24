@@ -112,7 +112,7 @@ export default function Stats({rows, isWon, answer}: StatsProps) {
               setShareButton(false)
             }}> 
             { showShareButton ? 
-              <div className='flex align-center'>
+              <div id='shareButton' className='flex align-center'>
                 <div style={{marginTop: '2px'}} className='mr-1'><FeatherIcon icon='share-2' size='20' /></div>
                 <span>Share</span>
               </div>
