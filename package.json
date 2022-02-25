@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "homepage": ".",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --base=/projects/nintendle/",
     "coverage": "vitest run --coverage",
     "dev": "vite",
     "preview": "vite preview",
