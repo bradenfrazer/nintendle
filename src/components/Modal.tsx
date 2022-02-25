@@ -28,8 +28,8 @@ export default function Modal({title, show, onClose, children} : ModalProps) {
       h-screen w-full absolute flex items-center justify-center bg-modal 
       transition-all duration-300 ease-in-out
       ${ show ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none -translate-y-64'}`}>
-        <div className='bg-white border-retro text-center 
-      w-full p-6 m-3/4 mx-auto
+        <div className='bg-white border-retro text-center
+      w-full max-h-full p-6 m-3/4 mx-auto overflow-y-auto
       sm:w-3/4 lg:w-1/2'>
           <div className='modal-header relative'>
             <button 
