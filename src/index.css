@@ -29,6 +29,11 @@ a:hover {
   opacity: 0.5;
 }
 
+ul {
+  padding-left: 2em;
+  list-style-type: disc;
+}
+
 .font-retro {
   font-family: "Press Start 2P", monospace;
 }
