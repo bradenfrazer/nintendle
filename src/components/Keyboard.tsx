@@ -21,7 +21,7 @@ export default function Keyboard({ onClick: onClickProps, disabled }: KeyboardPr
     onClickProps(returnProps)
   }
   return (
-    <div className='w-72 sm:w-96 lg:w-2/4 mx-auto'>
+    <div id="keyboard" className='w-72 sm:w-96 lg:w-2/4 mx-auto'>
       { keyboardKeys.map( (keyboardRow, rowIndex) => {
         return (
           <div key={rowIndex} className='flex justify-center my-2 space-x-1'>

@@ -22,7 +22,8 @@ export default function Modal({title, show, onClose, children} : ModalProps) {
   }, [])
 
   return ( 
-    <div role='modal' 
+    <div role='modal'
+      id='modal' 
       className={`modal 
       h-screen w-full absolute flex items-center justify-center bg-modal 
       transition-all duration-300 ease-in-out

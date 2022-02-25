@@ -89,7 +89,7 @@ export default function Stats({rows, isWon, answer}: StatsProps) {
   }
 
   return ( 
-    <div>
+    <div id='stats'>
       <div className='my-16'>
         { !isWon ? <p className='mb-2 font-retro'>Today's answer is</p> : '' }
         <p className='mb-2 text-3xl font-retro text-green-600 tracking-widest'>{ answer.toUpperCase() }</p>
