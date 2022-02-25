@@ -1,7 +1,8 @@
 {
   "name": "nintendle",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "homepage": ".",
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "vitest run --coverage",
