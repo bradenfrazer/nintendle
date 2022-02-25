@@ -33,11 +33,13 @@ export default function App() {
   useEffect(() => {
     let id: any
     if (isGameOver) {
-      id = setTimeout(() => setGameOver(true), 2000)
+      id = setTimeout(() => {
+        if(!showAbout) setGameOver(true)
+      }, 2000)
     }
     return () => clearTimeout(id)
 
-  }, [isGameOver])
+  }, [isGameOver, showAbout])
 
   //handle invalid guess pop up
   useEffect(() => {
