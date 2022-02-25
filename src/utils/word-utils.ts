@@ -76,5 +76,6 @@ export function computeGuess(guess: string, answerString: string): LetterState[]
 }
 
 export function isValidWord(word: string): boolean {
-    return solutionDictionary.includes(word) || englishDictionary.includes(word)
+    const wordToCheck = word.toLowerCase()
+    return solutionDictionary.includes(wordToCheck) || englishDictionary.includes(wordToCheck)
 }

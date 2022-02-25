@@ -161,7 +161,7 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>, (let
       if (curGuess.length === WORD_LENGTH) {
         return curGuess
       }
-      return newGuess
+      return newGuess.toLowerCase()
     })
   }
 
