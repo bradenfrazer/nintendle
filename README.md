@@ -18,5 +18,7 @@
 <p>The same rules as standard Wordle apply to Nintendle.</p>
 
 <p><strong>Credits:</strong></p>
-<p>Josh Wardle for Wordle</p>
-<p>Harry Wolff for <a href='https://github.com/hswolff/reacdle' target='_blank'>his implementation</a> of <a href='https://hswolff.github.io/reacdle/' target='_blank'>Reacdle</a>, which Nintendle is based on.</p>
+<ul>
+  <li>Josh Wardle for Wordle</li>
+  <li>Harry Wolff for <a href='https://github.com/hswolff/reacdle' target='_blank'>his implementation</a> of <a href='https://hswolff.github.io/reacdle/' target='_blank'>Reacdle</a>, which Nintendle is based on.</li>
+</ul>
