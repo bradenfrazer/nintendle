@@ -57,7 +57,10 @@ export default function Stats({rows, isWon, answer}: StatsProps) {
     }
   
     const date = new Date()
-    const dayOfYear = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000
+    const year = 2020 //hard code year as a leap year so that puzzle & day # match every year
+    const dayOfYear = (Date.UTC(year, date.getMonth(), date.getDate()) - Date.UTC(year, 0, 0)) / 24 / 60 / 60 / 1000
+
+    console.log(year, dayOfYear)
     
     let endRow: string = ''
     if (isWon) {
