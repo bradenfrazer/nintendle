@@ -102,7 +102,7 @@ export default function App() {
         </button>
       </header>
 
-      <main className='w-72 sm:w-96 mx-auto flex flex-col'>
+      <main className='w-80 sm:w-96 mx-auto flex flex-col'>
         <div id='gameBoard' className='grid grid-rows-6 gap-4 mb-4'>
           {rows.map(({guess, result}, index) => (
             <WordRow 
