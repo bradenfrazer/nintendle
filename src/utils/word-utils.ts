@@ -63,7 +63,10 @@ export function computeGuess(
 				return
 			}
 
-			if (result[answerIndex] === LetterState.Match) {
+			if (
+				result[answerIndex] === LetterState.Match &&
+				answerLetterCount[guessLetter] === 1
+			) {
 				result[resultIndex] = LetterState.Miss
 			}
 
