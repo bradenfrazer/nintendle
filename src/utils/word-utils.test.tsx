@@ -42,13 +42,22 @@ describe('computeGuess', () => {
 			LetterState.Miss,
 		])
 	})
-	it('only does one match when two letters are present', () => {
+	it('only does one match when two letters are present in answer', () => {
 		expect(computeGuess('sonic', 'samus')).toEqual([
 			LetterState.Match,
 			LetterState.Miss,
 			LetterState.Miss,
 			LetterState.Miss,
 			LetterState.Miss,
+		])
+	})
+	it('does one match and one present when two letters are present in guess and answer', () => {
+		expect(computeGuess('goron', 'onion')).toEqual([
+			LetterState.Miss,
+			LetterState.Present,
+			LetterState.Miss,
+			LetterState.Match,
+			LetterState.Match,
 		])
 	})
 	it('returns empty array when given incomplete guess', () => {
