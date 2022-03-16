@@ -16,11 +16,6 @@ body {
 	min-height: 100vh;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
-}
-
 a {
 	color: #007ace;
 	transition: 0.3s ease-in-out;
@@ -40,7 +35,6 @@ ul {
 
 /* source: https://nostalgic-css.github.io/NES.css/ */
 .border-retro {
-	border-color: #000;
 	border-style: solid;
 	border-width: 4px;
 }
@@ -52,6 +46,11 @@ ul {
 	border-image-repeat: space;
 	border-image-source: url('./resources/retro-border.svg');
 	border-image-outset: 2;
+}
+@media (prefers-color-scheme: dark) {
+	.border-retro-rounded {
+		border-image-source: url('./resources/retro-border-gray.svg');
+	}
 }
 
 /* Tooltip */

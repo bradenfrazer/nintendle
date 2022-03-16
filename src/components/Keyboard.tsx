@@ -41,7 +41,7 @@ export default function Keyboard({
 							if (letterState) {
 								styles += ` ${letterState}`
 							} else if (key !== '') {
-								styles += ` bg-gray-400`
+								styles += ` bg-gray-400 dark:bg-gray-500`
 							}
 
 							return (
@@ -68,9 +68,9 @@ const keyboardKeys = [
 ]
 
 const keyStateStyles = {
-	[LetterState.Miss]: 'bg-gray-500',
-	[LetterState.Present]: 'bg-yellow-500',
-	[LetterState.Match]: 'bg-green-500',
+	[LetterState.Miss]: 'bg-gray-500 dark:bg-gray-700',
+	[LetterState.Present]: 'bg-yellow-500 dark:bg-yellow-700',
+	[LetterState.Match]: 'bg-green-500 dark:bg-green-700',
 }
 
 const backspace = (

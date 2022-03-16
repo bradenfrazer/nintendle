@@ -38,7 +38,7 @@ interface CharacterBoxProps {
 function CharacterBox({ value, state, position }: CharacterBoxProps) {
 	const stateStyles =
 		state == null
-			? 'text-gray-800'
+			? 'text-gray-900 dark:text-gray-500'
 			: characterStateStyles[state] + ' text-white'
 	const animationStyles: React.CSSProperties = {
 		transitionDelay: `${position * 300}ms`,
@@ -47,7 +47,7 @@ function CharacterBox({ value, state, position }: CharacterBoxProps) {
 	return (
 		<span
 			className={`characterBox inline-flex justify-center items-center w-12 h-12
-    border-retro-rounded  
+    border-retro-rounded
     before:inline-block before:content-['_'] 
     uppercase font-bold font-retro text-xl text-center leading-none
     sm:text-2xl sm:w-16 sm:h-16
@@ -60,7 +60,7 @@ function CharacterBox({ value, state, position }: CharacterBoxProps) {
 }
 
 const characterStateStyles = {
-	[LetterState.Miss]: 'bg-gray-500 border-gray-500',
-	[LetterState.Present]: 'bg-yellow-500 border-yellow-500',
-	[LetterState.Match]: 'bg-green-500 border-green-500',
+	[LetterState.Miss]: 'bg-gray-500 dark:bg-gray-600',
+	[LetterState.Present]: 'bg-yellow-500 dark:bg-yellow-700',
+	[LetterState.Match]: 'bg-green-500 dark:bg-green-700',
 }

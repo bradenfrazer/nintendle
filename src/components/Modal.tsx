@@ -34,7 +34,7 @@ export default function Modal({ title, show, onClose, children }: ModalProps) {
 					: 'opacity-0 pointer-events-none -translate-y-64'
 			}`}>
 			<div
-				className='bg-white border-retro text-center
+				className='bg-white dark:bg-gray-800 border-retro border-gray-900 dark:border-gray-700 text-center dark:text-white
       w-full max-h-full p-6 m-3/4 mx-auto overflow-y-auto
       sm:w-3/4 lg:w-1/2'>
 				<div className='modal-header relative'>

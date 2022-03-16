@@ -80,19 +80,32 @@ export default function App() {
 		setGuess('')
 	}
 
+	// handle native dark mode
+	const colorSchemeMediaQuery = window.matchMedia(
+		'(prefers-color-scheme: dark)'
+	)
+	let useDarkMode = colorSchemeMediaQuery.matches
+
+	colorSchemeMediaQuery.addEventListener('change', function (evt) {
+		useDarkMode = evt.matches
+	})
+
 	//main app ui
 	return (
-		<div className='h-screen relative flex flex-col justify-between'>
-			<header className='flex justify-between items-center border-b border-grey-500 px-4 py-2 mb-4'>
+		<div className='h-screen relative flex flex-col justify-between dark:bg-gray-900'>
+			<header className='flex justify-between items-center border-b border-gray-300 dark:border-gray-700 px-4 py-2 mb-4'>
 				<button
 					onClick={openAboutModal}
 					className='transition-all duration-300 ease-in-out
             hover:opacity-50'>
-					<FeatherIcon icon='info' />
+					<FeatherIcon
+						icon='info'
+						color={useDarkMode ? '#ffffff' : '#000000'}
+					/>
 				</button>
 				<h1
 					id='logo'
-					className='inline-block text-2xl text-red-500 font-black border-8 border-red-500 rounded-3xl px-4 py-1
+					className='inline-block text-2xl text-red-500 dark:text-red-600 font-black border-8 border-red-500 dark:border-red-600 rounded-3xl px-4 py-1
         sm:text-3xl'>
 					Nintendle
 				</h1>
@@ -102,7 +115,10 @@ export default function App() {
 						onClick={openStatsModal}
 						className={`transition-all duration-300 ease-in-out
               ${isGameOver ? 'hover:opacity-50' : 'opacity-25'}`}>
-						<FeatherIcon icon='bar-chart-2' />
+						<FeatherIcon
+							icon='bar-chart-2'
+							color={useDarkMode ? '#ffffff' : '#000000'}
+						/>
 					</button>
 				</Tooltip>
 			</header>
