@@ -1,14 +1,10 @@
 import solutionDictionary from '../utils/dictionary.json'
 import englishDictionary from '../utils/english-dictionary.json'
 
-export function getRandomWord() {
-	function pair(x: number, y: number) {
-		return ((x + y) * (x + y + 1)) / 2 + y
-	}
-	const d = new Date()
-	const seed = pair(d.getDate(), d.getMonth())
-	const randomIndex = seed % solutionDictionary.length
-	return solutionDictionary[randomIndex]
+import { DAY_NUMBER } from '../store'
+
+export function getTodaysWord() {
+	return solutionDictionary[DAY_NUMBER]
 }
 
 export enum LetterState {

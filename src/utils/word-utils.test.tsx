@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'vitest'
 import {
 	computeGuess,
-	getRandomWord,
+	getTodaysWord,
 	isValidWord,
 	LetterState,
 } from './word-utils'
 import { render, screen } from '../test/test-utils'
 
-describe('getRandomWord', () => {
+describe('getTodaysWord', () => {
 	it('random word', () => {
-		expect(getRandomWord()).toBeTruthy()
-		expect(getRandomWord().length).toEqual(5)
+		expect(getTodaysWord()).toBeTruthy()
+		expect(getTodaysWord().length).toEqual(5)
 	})
 })
 

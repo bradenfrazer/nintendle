@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import FeatherIcon from 'feather-icons-react'
-import { GuessRow } from '../store'
+import { GuessRow, DAY_NUMBER } from '../store'
 
 interface StatsProps {
 	rows: GuessRow[]
@@ -54,17 +54,6 @@ export default function Stats({ rows, isWon, answer }: StatsProps) {
 			}
 		}
 
-		const date = new Date()
-		const year = 2020 //hard code year as a leap year so that puzzle & day # match every year
-		const dayOfYear =
-			(Date.UTC(year, date.getMonth(), date.getDate()) - Date.UTC(year, 0, 0)) /
-			24 /
-			60 /
-			60 /
-			1000
-
-		console.log(year, dayOfYear)
-
 		let endRow: string = ''
 		if (isWon) {
 			endRow = rows.length.toString()
@@ -73,7 +62,7 @@ export default function Stats({ rows, isWon, answer }: StatsProps) {
 		}
 
 		//build first line
-		const gameInfo = `Nintendle ${dayOfYear} ${endRow}/6`
+		const gameInfo = `Nintendle ${DAY_NUMBER} ${endRow}/6`
 
 		//build emoji board
 		let emojiBoard = ''

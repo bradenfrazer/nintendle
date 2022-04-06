@@ -1,9 +1,18 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import { computeGuess, getRandomWord, LetterState } from './utils/word-utils'
+import { computeGuess, getTodaysWord, LetterState } from './utils/word-utils'
 
 export const NUMBER_OF_GUESSES = 6
 export const WORD_LENGTH = 5
+
+const date = new Date()
+const year = 2020 //hard code year as a leap year so that puzzle & day # match every year
+export const DAY_NUMBER =
+	(Date.UTC(year, date.getMonth(), date.getDate()) - Date.UTC(year, 0, 0)) /
+	24 /
+	60 /
+	60 /
+	1000
 
 export interface GuessRow {
 	guess: string
@@ -73,7 +82,7 @@ export const useStore = create<StoreState>(
 				}))
 			}
 			return {
-				answer: getRandomWord(),
+				answer: getTodaysWord(),
 				last_played_date: getDate(),
 				rows: [],
 				keyboardLetterState: {},
@@ -81,7 +90,7 @@ export const useStore = create<StoreState>(
 				addGuess,
 				newGame: (initialRows = []) => {
 					set({
-						answer: getRandomWord(),
+						answer: getTodaysWord(),
 						last_played_date: getDate(),
 						rows: [],
 						keyboardLetterState: {},
