@@ -4,7 +4,7 @@ import englishDictionary from '../utils/english-dictionary.json'
 import { DAY_NUMBER } from '../store'
 
 export function getTodaysWord() {
-	return solutionDictionary[DAY_NUMBER]
+	return solutionDictionary[DAY_NUMBER - 1]
 }
 
 export enum LetterState {
